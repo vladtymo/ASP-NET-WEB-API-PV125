@@ -27,7 +27,10 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult Get([FromRoute] int id) // FromQuery, FromRoute
         {
-            return Ok(moviesRepo.GetByID(id));
+            if (moviesRepo.GetByID(id) == null) 
+                return NotFound();
+
+            return Ok(moviesRepo.GetByID(id)); // JSON
         }
 
         [HttpPost]
@@ -48,9 +51,12 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete]
-        public IActionResult Delete(int id)
+        [HttpDelete("{id}")]
+        public IActionResult Delete([FromRoute] int id)
         {
+            if (moviesRepo.GetByID(id) == null) 
+                return BadRequest();
+
             moviesRepo.Delete(id);
             moviesRepo.Save();
 
