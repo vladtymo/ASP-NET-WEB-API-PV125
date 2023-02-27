@@ -1,4 +1,5 @@
-﻿using DataAccess.Entities;
+﻿using BusinessLogic.Interfaces;
+using DataAccess.Entities;
 using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,56 +10,50 @@ namespace WebAPI.Controllers
     [ApiController]
     public class MoviesController : ControllerBase
     {
-        private readonly IRepository<Movie> moviesRepo;
+        private readonly IMoviesService moviesService;
 
-        public MoviesController(IRepository<Movie> moviesRepo)
+        public MoviesController(IMoviesService moviesService)
         {
-            this.moviesRepo = moviesRepo;
+            this.moviesService = moviesService;
         }
 
         [HttpGet]                   // GET: ~/api/movies
         //[HttpGet("collection")]   // GET: ~/api/movies/collection
         //[HttpGet("/movies")]      // GET: ~/movies
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(moviesRepo.Get());
+            return Ok(await moviesService.GetAll());
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get([FromRoute] int id) // FromQuery, FromRoute
+        public async Task<IActionResult> Get([FromRoute] int id) // FromQuery, FromRoute
         {
-            if (moviesRepo.GetByID(id) == null) 
-                return NotFound();
+            var item = await moviesService.GetById(id);
+            if (item == null) return NotFound();
 
-            return Ok(moviesRepo.GetByID(id)); // JSON
+            return Ok(item); // JSON
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Movie movie)
+        public async Task<IActionResult> Create([FromBody] Movie movie)
         {
-            moviesRepo.Insert(movie);
-            moviesRepo.Save();
+            await moviesService.Create(movie);
 
             return Ok();
         }
 
         [HttpPut]
-        public IActionResult Edit([FromBody] Movie movie)
+        public async Task<IActionResult> Edit([FromBody] Movie movie)
         {
-            moviesRepo.Update(movie);
-            moviesRepo.Save();
+            await moviesService.Edit(movie);
 
             return Ok();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            if (moviesRepo.GetByID(id) == null) 
-                return BadRequest();
-
-            moviesRepo.Delete(id);
-            moviesRepo.Save();
+            await moviesService.Delete(id);
 
             return Ok();
         }

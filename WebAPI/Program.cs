@@ -1,3 +1,5 @@
+using BusinessLogic.Interfaces;
+using BusinessLogic.Services;
 using DataAccess;
 using DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ShopDbContext>(opt => opt.UseSqlServer(connStr));
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
+builder.Services.AddScoped<IMoviesService, MoviesService>();
 
 var app = builder.Build();
 

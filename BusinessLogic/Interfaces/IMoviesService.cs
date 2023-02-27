@@ -9,7 +9,7 @@ namespace BusinessLogic.Interfaces
 {
     public interface IMoviesService
     {
-        Task GetAll();
+        Task<IEnumerable<Movie>> GetAll();
         Task<Movie?> GetById(int id);
         Task Create(Movie movie);
         Task Edit(Movie movie);

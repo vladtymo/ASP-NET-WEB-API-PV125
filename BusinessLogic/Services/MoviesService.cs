@@ -17,29 +17,36 @@ namespace BusinessLogic.Services
         {
             this.moviesRepo = moviesRepo;
         }
-        public Task GetAll()
+        public async Task<IEnumerable<Movie>> GetAll()
         {
-            return moviesRepo.Get();
+            return await moviesRepo.Get();
         }
 
-        public Task<Movie?> GetById(int id)
+        public async Task<Movie?> GetById(int id)
         {
-            throw new NotImplementedException();
+            if (await moviesRepo.GetByID(id) == null) return null; // throw exception
+
+            return await moviesRepo.GetByID(id);
         }
 
-        public Task Edit(Movie movie)
+        public async Task Edit(Movie movie)
         {
-            throw new NotImplementedException();
+            await moviesRepo.Update(movie);
+            await moviesRepo.Save();
         }
 
-        public Task Create(Movie movie)
+        public async Task Create(Movie movie)
         {
-            throw new NotImplementedException();
+            await moviesRepo.Insert(movie);
+            await moviesRepo.Save();
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            if (await moviesRepo.GetByID(id) == null) return; // throw exception
+
+            await moviesRepo.Delete(id);
+            await moviesRepo.Save();
         }
     }
 }
