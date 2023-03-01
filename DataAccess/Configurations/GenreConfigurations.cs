@@ -4,26 +4,25 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.Configurations
 {
-    internal class MovieConfigurations : IEntityTypeConfiguration<Movie>
+    internal class GenreConfigurations : IEntityTypeConfiguration<Genre>
     {
-        public void Configure(EntityTypeBuilder<Movie> builder)
+        public void Configure(EntityTypeBuilder<Genre> builder)
         {
             // Set Primary Key
             builder.HasKey(x => x.Id);
 
             // Set Property configurations
             builder.Property(x => x.Name)
-                   .HasMaxLength(200)
+                   .HasMaxLength(300)
                    .IsRequired();
 
             // set many to many relation
-            builder.HasMany(x => x.Genres).WithOne(x => x.Movie).HasForeignKey(x => x.MovieId);
+            builder.HasMany(x => x.Movies).WithOne(x => x.Genre).HasForeignKey(x => x.GenreId);
         }
     }
 }

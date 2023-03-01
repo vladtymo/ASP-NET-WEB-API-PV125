@@ -19,7 +19,7 @@ namespace BusinessLogic.Services
         }
         public async Task<IEnumerable<Movie>> GetAll()
         {
-            return await moviesRepo.Get();
+            return await moviesRepo.Get(includeProperties: nameof(Movie.Genres));
         }
 
         public async Task<Movie?> GetById(int id)

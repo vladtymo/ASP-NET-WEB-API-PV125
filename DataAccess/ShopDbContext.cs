@@ -16,10 +16,15 @@ namespace DataAccess
         {
             base.OnModelCreating(modelBuilder);
 
-            // ----------- Data Initialisation -----------
-            modelBuilder.SeedMovies();
+            // ----------- Set Configurations -----------
+            //modelBuilder.ApplyConfiguration(new MovieConfigurations());
+            //modelBuilder.ApplyConfiguration(new MovieConfigurations());
+            //modelBuilder.ApplyConfiguration(new GenreConfigurations());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            modelBuilder.ApplyConfiguration(new MovieConfigurations());
+            // ----------- Data Initialisation -----------
+            modelBuilder.SeedGenres();
+            modelBuilder.SeedMovies();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
