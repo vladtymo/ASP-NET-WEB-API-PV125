@@ -66,7 +66,7 @@ namespace DataAccess
         {
             TEntity? entityToDelete = await dbSet.FindAsync(id);
             if (entityToDelete != null)
-                Delete(entityToDelete);
+                await Delete(entityToDelete);
         }
 
         public virtual Task Delete(TEntity entityToDelete)

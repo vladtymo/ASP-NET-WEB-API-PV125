@@ -23,6 +23,9 @@ builder.Services.AddDbContext<ShopDbContext>(opt => opt.UseSqlServer(connStr));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IMoviesService, MoviesService>();
 
+// add auto mapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
