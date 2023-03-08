@@ -1,9 +1,6 @@
-﻿using Infrastructure.Configurations;
-using Core.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using System.Reflection.Emit;
 
 namespace Infrastructure
 {

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Core.Dtos;
 using Core.Entities;
-using System.Drawing;
 
 namespace Core.MapperProfiles
 {

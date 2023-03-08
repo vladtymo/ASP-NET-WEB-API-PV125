@@ -1,8 +1,5 @@
 ﻿using Core.Dtos;
 using Core.Interfaces;
-using Core.Entities;
-using Core.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
