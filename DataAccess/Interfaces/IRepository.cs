@@ -1,4 +1,5 @@
-﻿using DataAccess.Entities;
+﻿using Ardalis.Specification;
+using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,9 @@ namespace DataAccess.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        Task<IEnumerable<TEntity>> Get(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            params string[] includeProperties);
+        Task<IEnumerable<TEntity>> GetAll();
 
-        Task<TEntity?> GetByID(object id);
+        Task<TEntity?> GetById(object id);
 
         Task Insert(TEntity entity);
 
@@ -25,6 +23,9 @@ namespace DataAccess.Interfaces
         Task Delete(TEntity entityToDelete);
 
         Task Update(TEntity entityToUpdate);
+
+        Task<TEntity?> GetItemBySpec(ISpecification<TEntity> specification);
+        Task<IEnumerable<TEntity>> GetListBySpec(ISpecification<TEntity> specification);
 
         Task Save();
     }

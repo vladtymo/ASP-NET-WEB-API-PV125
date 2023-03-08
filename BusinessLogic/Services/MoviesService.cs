@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLogic.Dtos;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Specifications;
 using DataAccess.Entities;
 using DataAccess.Interfaces;
 using System;
@@ -23,14 +24,14 @@ namespace BusinessLogic.Services
         }
         public async Task<IEnumerable<MovieDto>> GetAll()
         {
-            var result = await moviesRepo.Get();
+            var result = await moviesRepo.GetListBySpec(new Movies.OrderedAll());
 
             return mapper.Map<IEnumerable<MovieDto>>(result);
         }
 
         public async Task<MovieDto?> GetById(int id)
         {
-            Movie? item = await moviesRepo.GetByID(id);
+            Movie? item = await moviesRepo.GetItemBySpec(new Movies.ById(id));
 
             if (item == null) return null; // throw exception
 
@@ -60,7 +61,7 @@ namespace BusinessLogic.Services
 
         public async Task Delete(int id)
         {
-            if (await moviesRepo.GetByID(id) == null) return; // throw exception
+            if (await moviesRepo.GetById(id) == null) return; // throw exception
 
             await moviesRepo.Delete(id);
             await moviesRepo.Save();
