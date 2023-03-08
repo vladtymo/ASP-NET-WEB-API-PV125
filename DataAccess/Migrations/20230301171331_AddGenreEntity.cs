@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace DataAccess.Migrations
+namespace Infrastructure.Migrations
 {
     public partial class AddGenreEntity : Migration
     {

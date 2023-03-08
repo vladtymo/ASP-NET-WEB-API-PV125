@@ -1,12 +1,12 @@
-﻿using BusinessLogic.Dtos;
-using DataAccess.Entities;
+﻿using Core.Dtos;
+using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogic.Interfaces
+namespace Core.Interfaces
 {
     public interface IMoviesService
     {

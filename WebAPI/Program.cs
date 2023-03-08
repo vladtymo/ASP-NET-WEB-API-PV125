@@ -1,7 +1,6 @@
-using BusinessLogic.Interfaces;
-using BusinessLogic.Services;
-using DataAccess;
-using DataAccess.Interfaces;
+using Core.Interfaces;
+using Core.Services;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 

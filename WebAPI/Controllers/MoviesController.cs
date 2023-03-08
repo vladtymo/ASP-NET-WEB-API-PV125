@@ -1,7 +1,7 @@
-﻿using BusinessLogic.Dtos;
-using BusinessLogic.Interfaces;
-using DataAccess.Entities;
-using DataAccess.Interfaces;
+﻿using Core.Dtos;
+using Core.Interfaces;
+using Core.Entities;
+using Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

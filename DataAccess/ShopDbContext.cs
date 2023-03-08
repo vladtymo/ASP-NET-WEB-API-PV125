@@ -1,11 +1,11 @@
-﻿using DataAccess.Configurations;
-using DataAccess.Entities;
+﻿using Infrastructure.Configurations;
+using Core.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace DataAccess
+namespace Infrastructure
 {
     public class ShopDbContext : DbContext
     {
