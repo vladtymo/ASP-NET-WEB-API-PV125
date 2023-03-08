@@ -1,3 +1,4 @@
+using Core;
 using Core.Interfaces;
 using Core.Services;
 using Infrastructure;
@@ -17,13 +18,13 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ShopDbContext>(opt => opt.UseSqlServer(connStr));
+builder.Services.AddDbContext(connStr);
 
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped<IMoviesService, MoviesService>();
+builder.Services.AddRepository();
+builder.Services.AddCustomServices();
 
 // add auto mapper
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper();
 
 var app = builder.Build();
 
