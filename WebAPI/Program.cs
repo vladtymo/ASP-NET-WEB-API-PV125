@@ -1,6 +1,4 @@
 using Core;
-using Core.Interfaces;
-using Core.Services;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -25,6 +23,8 @@ builder.Services.AddCustomServices();
 
 // add auto mapper
 builder.Services.AddAutoMapper();
+// add fluent validators
+builder.Services.AddValidators();
 
 var app = builder.Build();
 

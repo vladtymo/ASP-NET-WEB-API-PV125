@@ -35,6 +35,8 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] MovieDto movie)
         {
+            if (!ModelState.IsValid) return BadRequest();
+
             await moviesService.Create(movie);
 
             return Ok();
@@ -43,6 +45,8 @@ namespace WebAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Edit([FromBody] MovieDto movie)
         {
+            if (!ModelState.IsValid) return BadRequest();
+
             await moviesService.Edit(movie);
 
             return Ok();
