@@ -5,6 +5,7 @@ using Core.Specifications;
 using Core.Entities;
 using Core.Helpers;
 using System.Net;
+using Core.Resources;
 
 namespace Core.Services
 {
@@ -30,7 +31,7 @@ namespace Core.Services
             Movie? item = await moviesRepo.GetItemBySpec(new Movies.ById(id));
 
             if (item == null) 
-                throw new HttpException($"Movie with ID of {id} not found!", HttpStatusCode.NotFound);
+                throw new HttpException(ErrorMessages.MovieNotFound, HttpStatusCode.NotFound);
 
             // map entity type to dto type
 
@@ -59,7 +60,7 @@ namespace Core.Services
         public async Task Delete(int id)
         {
             if (await moviesRepo.GetById(id) == null)
-                throw new HttpException($"Movie with ID of {id} not found!", HttpStatusCode.NotFound);
+                throw new HttpException(ErrorMessages.MovieNotFound, HttpStatusCode.NotFound);
 
             await moviesRepo.Delete(id);
             await moviesRepo.Save();
