@@ -3,6 +3,8 @@ using Core.Dtos;
 using Core.Interfaces;
 using Core.Specifications;
 using Core.Entities;
+using Core.Helpers;
+using System.Net;
 
 namespace Core.Services
 {
@@ -27,7 +29,8 @@ namespace Core.Services
         {
             Movie? item = await moviesRepo.GetItemBySpec(new Movies.ById(id));
 
-            if (item == null) return null; // throw exception
+            if (item == null) 
+                throw new HttpException($"Movie with ID of {id} not found!", HttpStatusCode.NotFound);
 
             // map entity type to dto type
 
@@ -37,7 +40,7 @@ namespace Core.Services
             //    Name = item.Name,
             //    Year = item.Year
             //};
-            
+
             return mapper.Map<MovieDto>(item);
         }
 
@@ -55,7 +58,8 @@ namespace Core.Services
 
         public async Task Delete(int id)
         {
-            if (await moviesRepo.GetById(id) == null) return; // throw exception
+            if (await moviesRepo.GetById(id) == null)
+                throw new HttpException($"Movie with ID of {id} not found!", HttpStatusCode.NotFound);
 
             await moviesRepo.Delete(id);
             await moviesRepo.Save();

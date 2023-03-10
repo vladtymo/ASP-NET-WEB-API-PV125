@@ -27,7 +27,6 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Get([FromRoute] int id) // FromQuery, FromRoute
         {
             var item = await moviesService.GetById(id);
-            if (item == null) return NotFound();
 
             return Ok(item); // JSON
         }

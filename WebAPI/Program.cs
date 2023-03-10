@@ -2,6 +2,7 @@ using Core;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseAuthorization();
 
