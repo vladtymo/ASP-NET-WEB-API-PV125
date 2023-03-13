@@ -1,10 +1,11 @@
 ﻿using Core.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace Infrastructure
 {
-    internal class ShopDbContext : DbContext
+    internal class ShopDbContext : IdentityDbContext
     {
         public ShopDbContext() : base() { }
         public ShopDbContext(DbContextOptions options) : base(options) { }
