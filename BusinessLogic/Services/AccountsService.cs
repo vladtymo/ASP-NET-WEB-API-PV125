@@ -50,6 +50,7 @@ namespace Core.Services
 
         public async Task Register(RegisterDto dto)
         {
+            // TODO: use mapping instead
             IdentityUser user = new()
             {
                 UserName = dto.Username,
