@@ -16,6 +16,7 @@ namespace Core
         public static void AddCustomServices(this IServiceCollection services)
         {
             services.AddScoped<IMoviesService, MoviesService>();
+            services.AddScoped<IAccountsService, AccountsService>();
             // other services...
         }
 

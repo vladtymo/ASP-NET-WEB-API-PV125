@@ -61,11 +61,29 @@ namespace Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid login or password!.
+        /// </summary>
+        internal static string InvalidCreds {
+            get {
+                return ResourceManager.GetString("InvalidCreds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Movie with requested id not found!.
         /// </summary>
         internal static string MovieNotFound {
             get {
                 return ResourceManager.GetString("MovieNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User with requested id not found!.
+        /// </summary>
+        internal static string UserByIdNotFound {
+            get {
+                return ResourceManager.GetString("UserByIdNotFound", resourceCulture);
             }
         }
     }

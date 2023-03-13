@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InvalidCreds" xml:space="preserve">
+    <value>Invalid login or password!</value>
+  </data>
   <data name="MovieNotFound" xml:space="preserve">
     <value>Movie with requested id not found!</value>
+  </data>
+  <data name="UserByIdNotFound" xml:space="preserve">
+    <value>User with requested id not found!</value>
   </data>
 </root>
