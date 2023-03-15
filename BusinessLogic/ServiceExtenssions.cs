@@ -17,6 +17,7 @@ namespace Core
         {
             services.AddScoped<IMoviesService, MoviesService>();
             services.AddScoped<IAccountsService, AccountsService>();
+            services.AddScoped<IJwtService, JwtService>();
             // other services...
         }
 

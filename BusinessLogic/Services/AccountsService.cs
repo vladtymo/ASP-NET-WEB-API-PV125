@@ -16,12 +16,15 @@ namespace Core.Services
     {
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
+        private readonly IJwtService jwtService;
 
         public AccountsService(UserManager<IdentityUser> userManager,
-                               SignInManager<IdentityUser> signInManager)
+                               SignInManager<IdentityUser> signInManager,
+                               IJwtService jwtService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.jwtService = jwtService;
         }
         public async Task<IdentityUser> Get(string id)
         {
@@ -33,7 +36,7 @@ namespace Core.Services
             return user;
         }
 
-        public async Task Login(LoginDto dto)
+        public async Task<LoginResponseDto> Login(LoginDto dto)
         {
             var user = await userManager.FindByNameAsync(dto.Username);
 
@@ -41,6 +44,11 @@ namespace Core.Services
                 throw new HttpException(ErrorMessages.InvalidCreds, HttpStatusCode.BadRequest);
 
             await signInManager.SignInAsync(user, true);
+
+            return new LoginResponseDto()
+            {
+                Token = jwtService.CreateToken(jwtService.GetClaims(user))
+            };
         }
 
         public async Task Logout()

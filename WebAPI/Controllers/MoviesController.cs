@@ -1,5 +1,7 @@
 ﻿using Core.Dtos;
 using Core.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -15,6 +17,7 @@ namespace WebAPI.Controllers
             this.moviesService = moviesService;
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet]                   // GET: ~/api/movies
         //[HttpGet("collection")]   // GET: ~/api/movies/collection
         //[HttpGet("/movies")]      // GET: ~/movies
