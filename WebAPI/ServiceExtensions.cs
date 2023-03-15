@@ -26,6 +26,7 @@ namespace WebAPI
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = jwtOpts.Issuer,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOpts.Key)),
+                    ClockSkew = TimeSpan.Zero
                 };
             });
         }
