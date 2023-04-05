@@ -14,6 +14,8 @@ namespace Core.MapperProfiles
                 .ForMember(x => x.Genres, opt => opt.MapFrom(x => x.Genres.Select(i => i.Genre)));
 
             CreateMap<MovieDto, Movie>();
+
+            CreateMap<CreateMovieDto, Movie>();
         }
     }
 }

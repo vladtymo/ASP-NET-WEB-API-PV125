@@ -7,7 +7,7 @@ namespace Core.Validators
     {
         public MovieValidators()
         {
-            RuleFor(x => x.Name)
+            RuleFor(x => x.Title)
                 .NotEmpty()
                 .MinimumLength(2);
 

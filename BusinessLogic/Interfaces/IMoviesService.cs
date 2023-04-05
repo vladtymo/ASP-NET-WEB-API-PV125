@@ -6,7 +6,7 @@ namespace Core.Interfaces
     {
         Task<IEnumerable<MovieDto>> GetAll();
         Task<MovieDto?> GetById(int id);
-        Task Create(MovieDto movie);
+        Task Create(CreateMovieDto movie);
         Task Edit(MovieDto movie);
         Task Delete(int id);
     }

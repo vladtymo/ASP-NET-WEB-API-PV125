@@ -12,7 +12,7 @@ namespace Infrastructure.Configurations
             builder.HasKey(x => x.Id);
 
             // Set Property configurations
-            builder.Property(x => x.Name)
+            builder.Property(x => x.Title)
                    .HasMaxLength(200)
                    .IsRequired();
 

@@ -17,7 +17,6 @@ namespace WebAPI.Controllers
             this.moviesService = moviesService;
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet]                   // GET: ~/api/movies
         //[HttpGet("collection")]   // GET: ~/api/movies/collection
         //[HttpGet("/movies")]      // GET: ~/movies
@@ -35,7 +34,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] MovieDto movie)
+        public async Task<IActionResult> Create([FromBody] CreateMovieDto movie)
         {
             if (!ModelState.IsValid) return BadRequest();
 
@@ -45,6 +44,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Edit([FromBody] MovieDto movie)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -55,6 +55,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await moviesService.Delete(id);

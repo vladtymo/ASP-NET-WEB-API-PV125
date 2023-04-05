@@ -25,10 +25,10 @@ namespace Infrastructure
         {
             modelBuilder.Entity<Movie>().HasData(new[]
             {
-                new Movie() { Id = 1, Name = "Dune", Year=2021 },
-                new Movie() { Id = 2, Name = "The Green Mile", Year= 1999 },
-                new Movie() { Id = 3, Name = "Titanic", Year=1997 },
-                new Movie() { Id = 4, Name = "The Terminator", Year=1984 }
+                new Movie() { Id = 1, Title = "Dune", Year=2021, Duration = new(1, 35, 0), CoverUrl = @"https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" },
+                new Movie() { Id = 2, Title = "The Green Mile", Year= 1999, Duration = new(2, 11, 0), CoverUrl = @"https://m.media-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_FMjpg_UX1000_.jpg" },
+                new Movie() { Id = 3, Title = "Titanic", Year=1997, Duration = new(3, 14, 0), CoverUrl = @"https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg" },
+                new Movie() { Id = 4, Title = "The Terminator", Year=1984, Duration = new(2, 54, 0), CoverUrl = @"https://m.media-amazon.com/images/M/MV5BMGU2NzRmZjUtOGUxYS00ZjdjLWEwZWItY2NlM2JhNjkxNTFmXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_FMjpg_UX1000_.jpg" }
             });
 
             modelBuilder.Entity<MovieGenre>().HasData(new[]

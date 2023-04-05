@@ -10,7 +10,7 @@ namespace Core.Specifications
             public OrderedAll()
             {
                 Query
-                    .OrderBy(x => x.Name)
+                    .OrderBy(x => x.Title)
                     .Include(x => x.Genres).ThenInclude(x => x.Genre);
             }
         }

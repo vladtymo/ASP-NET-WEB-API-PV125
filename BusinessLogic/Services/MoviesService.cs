@@ -12,11 +12,15 @@ namespace Core.Services
     public class MoviesService : IMoviesService
     {
         private readonly IRepository<Movie> moviesRepo;
+        private readonly IRepository<MovieGenre> movieGenRepo;
         private readonly IMapper mapper;
 
-        public MoviesService(IRepository<Movie> moviesRepo, IMapper mapper)
+        public MoviesService(IRepository<Movie> moviesRepo,
+                             IRepository<MovieGenre> movieGenRepo,
+                             IMapper mapper)
         {
             this.moviesRepo = moviesRepo;
+            this.movieGenRepo = movieGenRepo;
             this.mapper = mapper;
         }
         public async Task<IEnumerable<MovieDto>> GetAll()
@@ -51,10 +55,27 @@ namespace Core.Services
             await moviesRepo.Save();
         }
 
-        public async Task Create(MovieDto dto)
+        public async Task Create(CreateMovieDto dto)
         {
-            await moviesRepo.Insert(mapper.Map<Movie>(dto));
+            var movie = mapper.Map<Movie>(dto);
+
+            await moviesRepo.Insert(movie);
             await moviesRepo.Save();
+            // after Save() we can get the movie id
+
+            if (dto.GenreIds != null)
+            {
+                foreach (var gId in dto.GenreIds)
+                {
+                    await movieGenRepo.Insert(new MovieGenre()
+                    {
+                        GenreId = gId,
+                        MovieId = movie.Id // created movie id
+                    });
+                }
+            }
+
+            await movieGenRepo.Save();
         }
 
         public async Task Delete(int id)
