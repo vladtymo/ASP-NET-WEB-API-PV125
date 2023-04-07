@@ -25,6 +25,12 @@ namespace WebAPI.Controllers
             return Ok(await moviesService.GetAll());
         }
 
+        [HttpGet("genres")]
+        public async Task<IActionResult> GetGenres()
+        {
+            return Ok(await moviesService.GetGenres());
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] int id) // FromQuery, FromRoute
         {

@@ -12,22 +12,30 @@ namespace Core.Services
     public class MoviesService : IMoviesService
     {
         private readonly IRepository<Movie> moviesRepo;
+        private readonly IRepository<Genre> genreRepo;
         private readonly IRepository<MovieGenre> movieGenRepo;
         private readonly IMapper mapper;
 
         public MoviesService(IRepository<Movie> moviesRepo,
+                             IRepository<Genre> genreRepo,
                              IRepository<MovieGenre> movieGenRepo,
                              IMapper mapper)
         {
             this.moviesRepo = moviesRepo;
+            this.genreRepo = genreRepo;
             this.movieGenRepo = movieGenRepo;
             this.mapper = mapper;
         }
         public async Task<IEnumerable<MovieDto>> GetAll()
         {
             var result = await moviesRepo.GetListBySpec(new Movies.OrderedAll());
-
             return mapper.Map<IEnumerable<MovieDto>>(result);
+        }
+
+        public async Task<IEnumerable<GenreDto>> GetGenres()
+        {
+            var result = await genreRepo.GetAll();
+            return mapper.Map<IEnumerable<GenreDto>>(result);
         }
 
         public async Task<MovieDto?> GetById(int id)
