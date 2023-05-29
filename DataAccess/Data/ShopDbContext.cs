@@ -27,7 +27,7 @@ namespace Infrastructure
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PV125_CINEMA_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;";
+            string connStr = @"Server=tcp:cinema-server.database.windows.net,1433;Initial Catalog=cinemadb125;Persist Security Info=False;User ID=admin123;Password=Qwer1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             optionsBuilder.UseSqlServer(connStr);
         }
 
